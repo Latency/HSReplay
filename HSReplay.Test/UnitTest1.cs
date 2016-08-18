@@ -10,7 +10,7 @@ namespace HSReplay.Test
 		[TestMethod]
 		public void TestMethod1()
 		{
-			var client = new HsReplayClient("89c8bbc1-474a-4b1b-91b5-2a116d19df7a", true);
+			var client = new HsReplayClient("89c8bbc1-474a-4b1b-91b5-2a116d19df7a", "HSReplay-API-Test/1.0", true);
 
 			var token = client.CreateUploadToken().Result;
 			Assert.IsFalse(string.IsNullOrEmpty(token), "string.IsNullOrEmpty(key)");

@@ -25,11 +25,12 @@ namespace HSReplay
 		/// <summary>
 		/// </summary>
 		/// <param name="apiKey">hsreplay.net API key</param>
+		/// <param name="userAgent">userAgent included in webrequests</param>
 		/// <param name="testData">Set to true when not uploading actual user data.</param>
-		public HsReplayClient(string apiKey, bool testData = false)
+		public HsReplayClient(string apiKey, string userAgent = "", bool testData = false)
 		{
 			_apiKey = apiKey;
-			_webClient = new WebClient();
+			_webClient = new WebClient(userAgent);
 			_testData = testData;
 		}
 

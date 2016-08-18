@@ -8,6 +8,13 @@ namespace HSReplay
 {
 	internal class WebClient
 	{
+		private string _userAgent;
+
+		public WebClient(string userAgent)
+		{
+			_userAgent = userAgent;
+		}
+
 		private const string Post = "POST";
 		private const string Get = "GET";
 		private const string Put = "PUT";
@@ -52,6 +59,7 @@ namespace HSReplay
 			request.ContentType = GetContentTypeString(contentType);
 			request.Accept = "application/json";
 			request.Method = method;
+			request.UserAgent = _userAgent;
 			return request;
 		}
 

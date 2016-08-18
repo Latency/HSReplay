@@ -1,4 +1,4 @@
-﻿namespace HSReplay
+﻿namespace HSReplay.Web
 {
 	internal class Header
 	{

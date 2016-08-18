@@ -1,4 +1,4 @@
-﻿namespace HSReplay
+﻿namespace HSReplay.Web
 {
 	public enum ContentType
 	{

@@ -7,6 +7,9 @@ namespace HSReplay.Responses
 	/// </summary>
 	public class LogUploadRequest
 	{
+		[JsonProperty("url")]
+		public string ReplayUrl { get; set; }
+
 		[JsonProperty("put_url")]
 		public string PutUrl { get; set; }
 

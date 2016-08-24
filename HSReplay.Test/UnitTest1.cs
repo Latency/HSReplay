@@ -29,6 +29,7 @@ namespace HSReplay.Test
 			var uploadEvent = client.CreateUploadRequest(metaData, token).Result;
 			Assert.IsFalse(string.IsNullOrEmpty(uploadEvent.PutUrl));
 			Assert.IsFalse(string.IsNullOrEmpty(uploadEvent.ShortId));
+			Assert.IsFalse(string.IsNullOrEmpty(uploadEvent.ReplayUrl));
 
 			string[] log;
 			using(var sr = new StreamReader("TestData/Power.log"))

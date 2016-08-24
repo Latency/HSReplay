@@ -27,7 +27,6 @@ namespace HSReplay.Test
 				MatchStart = DateTime.Now.ToString("o")
 			};
 			var uploadEvent = client.CreateUploadRequest(metaData, token).Result;
-			Assert.IsFalse(string.IsNullOrEmpty(uploadEvent.DescriptorUrl));
 			Assert.IsFalse(string.IsNullOrEmpty(uploadEvent.PutUrl));
 			Assert.IsFalse(string.IsNullOrEmpty(uploadEvent.ShortId));
 

@@ -12,8 +12,5 @@ namespace HSReplay.Responses
 
 		[JsonProperty("shortid")]
 		public string ShortId { get; set; }
-
-		[JsonProperty("descriptor_url")]
-		public string DescriptorUrl { get; set; }
 	}
 }

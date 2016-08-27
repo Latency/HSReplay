@@ -58,6 +58,9 @@ namespace HSReplay
 		[JsonProperty("tavern_brawl_season", DefaultValueHandling = DefaultValueHandling.Ignore)]
 		public int? TavernBrawlSeason { get; set; }
 
+		[JsonProperty("ladder_season", DefaultValueHandling = DefaultValueHandling.Ignore)]
+		public int? LadderSeason { get; set; }
+
 		/// <summary>
 		/// Using the Hearthstone FormatType enum.
 		/// </summary>

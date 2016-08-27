@@ -88,7 +88,7 @@ namespace HSReplay
 			/// <summary>
 			/// Legend rank before the game, in the current format.
 			/// </summary>
-			[JsonProperty("legendrank", DefaultValueHandling = DefaultValueHandling.Ignore)]
+			[JsonProperty("legend_rank", DefaultValueHandling = DefaultValueHandling.Ignore)]
 			public int? LegendRank { get; set; }
 
 			/// <summary>

@@ -55,8 +55,8 @@ namespace HSReplay
 		[JsonProperty("scenario_id", DefaultValueHandling = DefaultValueHandling.Ignore)]
 		public int? ScenarioId { get; set; }
 
-		[JsonProperty("tavern_brawl_season", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int? TavernBrawlSeason { get; set; }
+		[JsonProperty("brawl_season", DefaultValueHandling = DefaultValueHandling.Ignore)]
+		public int? BrawlSeason { get; set; }
 
 		[JsonProperty("ladder_season", DefaultValueHandling = DefaultValueHandling.Ignore)]
 		public int? LadderSeason { get; set; }

@@ -15,8 +15,7 @@ namespace HSReplay
 	{
 		private const string ClaimAccountUrl = "https://hsreplay.net/api/v1/claim_account/";
 		private const string TokensUrl = "https://hsreplay.net/api/v1/tokens/";
-		private const string UploadRequestUrl = "https://upload.hsreplay.net/api/v1/replay/upload/request";
-		private const string WebUrl = "https://hsreplay.net";
+		private const string UploadRequestUrl = "https://upload.hsreplay.net/api/v1/replay/upload/request/";
 
 		private readonly string _apiKey;
 		private readonly bool _testData;
@@ -77,7 +76,7 @@ namespace HSReplay
 		/// <returns>Status of given auth token.</returns>
 		public async Task<AccountStauts> GetAccountStatus(string token)
 		{
-			var response = await _webClient.GetAsync($"{TokensUrl}{token}", ApiHeader);
+			var response = await _webClient.GetAsync($"{TokensUrl}{token}/", ApiHeader);
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 				return JsonConvert.DeserializeObject<AccountStauts>(reader.ReadToEnd());

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -13,24 +13,22 @@ namespace HSReplay
 	/// </summary>
 	public class HsReplayClient
 	{
-		private const string ClaimAccountUrl = "https://hsreplay.net/api/v1/claim_account/";
-		private const string TokensUrl = "https://hsreplay.net/api/v1/tokens/";
-		private const string UploadRequestUrl = "https://upload.hsreplay.net/api/v1/replay/upload/request/";
-
 		private readonly string _apiKey;
 		private readonly bool _testData;
 		private readonly WebClient _webClient;
+		private readonly ClientConfig _config;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="apiKey">hsreplay.net API key</param>
 		/// <param name="userAgent">userAgent included in webrequests</param>
 		/// <param name="testData">Set to true when not uploading actual user data.</param>
-		public HsReplayClient(string apiKey, string userAgent = "", bool testData = false)
+		public HsReplayClient(string apiKey, string userAgent = "", bool testData = false, ClientConfig config = null)
 		{
 			_apiKey = apiKey;
 			_webClient = new WebClient(userAgent);
 			_testData = testData;
+			_config = config ?? new ClientConfig();
 		}
 
 		private Header GetAuthHeader(string token) => new Header("Authorization", $"Token {token}");
@@ -44,7 +42,7 @@ namespace HSReplay
 		public async Task<string> CreateUploadToken()
 		{
 			var content = _testData ? JsonConvert.SerializeObject(new {test_data = true}) : null;
-			var response = await _webClient.PostJsonAsync(TokensUrl, content, false, ApiHeader);
+			var response = await _webClient.PostJsonAsync(_config.TokensUrl, content, false, ApiHeader);
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 			{
@@ -63,7 +61,7 @@ namespace HSReplay
 		/// <returns>Url for account claiming.</returns>
 		public async Task<string> GetClaimAccountUrl(string token)
 		{
-			var response = await _webClient.PostAsync(ClaimAccountUrl, string.Empty, false, ApiHeader, GetAuthHeader(token));
+			var response = await _webClient.PostAsync(_config.ClaimAccountUrl, string.Empty, false, ApiHeader, GetAuthHeader(token));
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 				return JsonConvert.DeserializeObject<AccountClaim>(reader.ReadToEnd()).Url;
@@ -76,7 +74,7 @@ namespace HSReplay
 		/// <returns>Status of given auth token.</returns>
 		public async Task<AccountStauts> GetAccountStatus(string token)
 		{
-			var response = await _webClient.GetAsync($"{TokensUrl}{token}/", ApiHeader);
+			var response = await _webClient.GetAsync($"{_config.TokensUrl}{token}/", ApiHeader);
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 				return JsonConvert.DeserializeObject<AccountStauts>(reader.ReadToEnd());
@@ -93,7 +91,7 @@ namespace HSReplay
 		public async Task<LogUploadRequest> CreateUploadRequest(UploadMetaData metaData, string token)
 		{
 			var content = JsonConvert.SerializeObject(metaData);
-			var response = await _webClient.PostAsync(UploadRequestUrl, content, true, ApiHeader, GetAuthHeader(token));
+			var response = await _webClient.PostAsync(_config.UploadRequestUrl, content, true, ApiHeader, GetAuthHeader(token));
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 			{

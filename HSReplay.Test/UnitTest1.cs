@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,6 +11,7 @@ namespace HSReplay.Test
 		[TestMethod]
 		public void KeyGen_AccountStatus_Upload()
 		{
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 			var client = new HsReplayClient("89c8bbc1-474a-4b1b-91b5-2a116d19df7a", "HSReplay-API-Test/1.0", true);
 
 			var token = client.CreateUploadToken().Result;
@@ -32,6 +33,23 @@ namespace HSReplay.Test
 			Assert.IsFalse(string.IsNullOrEmpty(uploadEvent.ShortId));
 			Assert.IsFalse(string.IsNullOrEmpty(uploadEvent.ReplayUrl));
 
+			var packUpload = client.UploadPack(
+				new PackData
+				{
+					AccountHi = 1,
+					AccountLo = 1,
+					BoosterType = 1,
+					Date = DateTime.Now.ToString("o"),
+					Cards =
+						new[]
+						{
+							new CardData {CardId = "GAME_005", Premium = true},
+							new CardData {CardId = "GAME_005", Premium = true},
+							new CardData {CardId = "GAME_005", Premium = true},
+							new CardData {CardId = "GAME_005", Premium = true},
+							new CardData {CardId = "GAME_005", Premium = true}
+						}
+				}, token).Result;
 			string[] log;
 			using(var sr = new StreamReader("TestData/Power.log"))
 				log = sr.ReadToEnd().Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);

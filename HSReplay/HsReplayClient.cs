@@ -118,5 +118,21 @@ namespace HSReplay
 		/// <returns></returns>
 		public async Task UploadLog(string putUrl, IEnumerable<string> log)
 			=> (await _webClient.PutAsync(putUrl, string.Join(Environment.NewLine, log), true)).Close();
+
+		/// <summary>
+		///    Uploads the given PackData.
+		///    PackData.Cards must contain exactly 5 cards.
+		/// </summary>
+		/// <param name="data"></param>
+		/// <param name="token">Auth token</param>
+		/// <returns>Response string</returns>
+		public async Task<string> UploadPack(PackData data, string token)
+		{
+			var content = JsonConvert.SerializeObject(data);
+			using(var response = await _webClient.PostJsonAsync(_config.UploadPackUrl, content, false, ApiHeader, GetAuthHeader(token)))
+			using(var responseStream = response.GetResponseStream())
+			using(var reader = new StreamReader(responseStream))
+				return reader.ReadToEnd();
+		}
 	}
 }

@@ -65,7 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardData.cs" />
     <Compile Include="ClientConfig.cs" />
+    <Compile Include="PackData.cs" />
     <Compile Include="Responses\AccountClaim.cs" />
     <Compile Include="Responses\AccountStauts.cs" />
     <Compile Include="HsReplayClient.cs" />

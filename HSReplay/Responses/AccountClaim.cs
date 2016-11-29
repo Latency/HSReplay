@@ -7,7 +7,7 @@ namespace HSReplay.Responses
 	/// </summary>
 	public class AccountClaim
 	{
-		[JsonProperty("url")]
+		[JsonProperty("full_url")]
 		public string Url { get; set; }
 	}
 }

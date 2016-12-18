@@ -28,5 +28,8 @@ namespace HSReplay.Responses
 
 		[JsonProperty("username")]
 		public string Username { get; set; }
+
+		[JsonProperty("battletag")]
+		public string BattleTag { get; set; }
 	}
 }

@@ -74,7 +74,7 @@ namespace HSReplay
 		/// <returns>Status of given auth token.</returns>
 		public async Task<AccountStauts> GetAccountStatus(string token)
 		{
-			using(var response = await _webClient.GetAsync($"{_config.TokensUrl}{token}/", ApiHeader))
+			using(var response = await _webClient.GetAsync($"{_config.TokensUrl}{token}/", ApiHeader, GetAuthHeader(token)))
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 				return JsonConvert.DeserializeObject<AccountStauts>(reader.ReadToEnd());

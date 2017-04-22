@@ -134,5 +134,18 @@ namespace HSReplay
 			using(var reader = new StreamReader(responseStream))
 				return reader.ReadToEnd();
 		}
+
+		/// <summary>
+		///     Returns a list deck shortIds with avilable data.
+		/// </summary>
+		/// <param name="token">Auth token</param>
+		/// <returns>List of deck shortIds with avilable data.</returns>
+		public async Task<AvailableDecks> GetAvailableDecks(string token)
+		{
+			using(var response = await _webClient.GetAsync($"{_config.DeckInventoryUrl}", ApiHeader, GetAuthHeader(token)))
+			using(var responseStream = response.GetResponseStream())
+			using(var reader = new StreamReader(responseStream))
+				return JsonConvert.DeserializeObject<AvailableDecks>(reader.ReadToEnd());
+		}
 	}
 }

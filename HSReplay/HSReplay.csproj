@@ -65,7 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Responses\AvailableDecks.cs" />
+    <Compile Include="Responses\QueryData.cs" />
     <Compile Include="CardData.cs" />
     <Compile Include="ClientConfig.cs" />
     <Compile Include="PackData.cs" />

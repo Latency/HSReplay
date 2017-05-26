@@ -142,6 +142,14 @@ namespace HSReplay
 		/// <returns>Returns QueryData object containing a list deck shortIds with avilable data.</returns>
 		public async Task<QueryData> GetAvailableDecks(string token) => await GetQueryData(_config.DeckInventoryUrl, token);
 
+		/// <summary>
+		///     Returns QueryData object contains winrates for provided deck id.
+		/// </summary>
+		/// <param name="deckId">Deck shortId of target deck</param>
+		/// <param name="token">Auth token</param>
+		/// <returns>Returns QueryData object contains winrates for provided deck id.</returns>
+		public async Task<QueryData> GetDeckWinrates(string deckId, string token) => await GetQueryData(_config.DeckWinrateUrl + deckId, token);
+
 		private async Task<QueryData> GetQueryData(string url, string token)
 		{
 			using(var response = await _webClient.GetAsync(url, ApiHeader, GetAuthHeader(token)))

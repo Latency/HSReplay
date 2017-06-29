@@ -73,5 +73,21 @@ namespace HSReplay.Test
 			}
 			Assert.IsTrue(webException);
 		}
+
+		[TestMethod]
+		public void TestDeckWinrate()
+		{
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+			var client = new HsReplayClient("89c8bbc1-474a-4b1b-91b5-2a116d19df7a", "HSReplay-API-Test/1.0", true);
+
+			const string wildDeckId = "AslFFZWw1KEskJD94V00fh";
+
+			var token = client.CreateUploadToken().Result;
+			var dataStandard = client.GetDeckWinrates(wildDeckId, false, token).Result;
+			Assert.IsNull(dataStandard);
+
+			var dataWild = client.GetDeckWinrates(wildDeckId, true, token).Result;
+			Assert.IsNotNull(dataWild);
+		}
 	}
 }

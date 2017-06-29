@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Threading.Tasks;
+using System.Web;
 using HSReplay.Responses;
 using HSReplay.Web;
 using Newtonsoft.Json;
@@ -146,9 +148,28 @@ namespace HSReplay
 		///     Returns QueryData object contains winrates for provided deck id.
 		/// </summary>
 		/// <param name="deckId">Deck shortId of target deck</param>
+		/// <param name="wild">Request wild data for target deck</param>
 		/// <param name="token">Auth token</param>
 		/// <returns>Returns QueryData object contains winrates for provided deck id.</returns>
-		public async Task<QueryData> GetDeckWinrates(string deckId, string token) => await GetQueryData(_config.DeckWinrateUrl + deckId, token);
+		public async Task<QueryData> GetDeckWinrates(string deckId, bool wild, string token)
+		{
+			var query = new NameValueCollection {["deck_id"] = deckId};
+			if(wild)
+				query["GameType"] = "RANKED_WILD";
+			var url = BuildUrl(_config.DeckWinrateUrl, query);
+			return await GetQueryData(url, token);
+		}
+
+		private string BuildUrl(string url, NameValueCollection parameters)
+		{
+			if(parameters == null || !parameters.HasKeys())
+				return url;
+			var uriBuilder = new UriBuilder(url);
+			var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+			query.Add(parameters);
+			uriBuilder.Query = query.ToString();
+			return uriBuilder.Uri.ToString();
+		}
 
 		private async Task<QueryData> GetQueryData(string url, string token)
 		{

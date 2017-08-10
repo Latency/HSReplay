@@ -22,6 +22,10 @@ namespace HSReplay.Test
 			Assert.IsTrue(account.TestData, "account.TestData");
 			Assert.IsNull(account.User);
 
+			var claimUrl = client.GetClaimAccountUrl(token).Result;
+			Assert.IsNotNull(claimUrl);
+			Assert.IsTrue(claimUrl.StartsWith("https://hsreplay.net/"));
+
 			var metaData = new UploadMetaData()
 			{
 				TestData = true,

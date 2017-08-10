@@ -63,7 +63,7 @@ namespace HSReplay
 		/// <returns>Url for account claiming.</returns>
 		public async Task<string> GetClaimAccountUrl(string token)
 		{
-			using(var response = await _webClient.PostAsync(_config.ClaimAccountUrl, string.Empty, false, ApiHeader, GetAuthHeader(token)))
+			using(var response = await _webClient.PostJsonAsync(_config.ClaimAccountUrl, string.Empty, false, ApiHeader, GetAuthHeader(token)))
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 				return JsonConvert.DeserializeObject<AccountClaim>(reader.ReadToEnd()).Url;
@@ -93,7 +93,7 @@ namespace HSReplay
 		public async Task<LogUploadRequest> CreateUploadRequest(UploadMetaData metaData, string token)
 		{
 			var content = JsonConvert.SerializeObject(metaData);
-			using(var response = await _webClient.PostAsync(_config.UploadRequestUrl, content, true, ApiHeader, GetAuthHeader(token)))
+			using(var response = await _webClient.PostJsonAsync(_config.UploadRequestUrl, content, true, ApiHeader, GetAuthHeader(token)))
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 			{

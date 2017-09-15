@@ -31,5 +31,8 @@ namespace HSReplay.Responses
 
 		[JsonProperty("battletag")]
 		public string BattleTag { get; set; }
+
+		[JsonProperty("is_premium")]
+		public string IsPremium { get; set; }
 	}
 }

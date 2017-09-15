@@ -25,6 +25,9 @@ namespace HSReplay
 		public async Task<HttpWebResponse> PostAsync(string url, string data, bool gzip, params Header[] headers)
 			=> await SendWebRequestAsync(CreateRequest(url, Post), data, gzip, headers);
 
+		public async Task<HttpWebResponse> PostAsync(string url, string data, bool gzip, ContentType contentType, params Header[] headers)
+			=> await SendWebRequestAsync(CreateRequest(url, Post, contentType), data, gzip, headers);
+
 		public async Task<HttpWebResponse> PostJsonAsync(string url, string data, bool gzip, params Header[] headers)
 			=> await SendWebRequestAsync(CreateRequest(url, Post, ContentType.Json), data, gzip, headers);
 
@@ -67,12 +70,14 @@ namespace HSReplay
 		{
 			switch(contentType)
 			{
-			case ContentType.Text:
-				return "text/plain";
-			case ContentType.Json:
-				return "application/json";
-			default:
-				return "text/plain";
+				case ContentType.Text:
+					return "text/plain";
+				case ContentType.Json:
+					return "application/json";
+				case ContentType.UrlEncoded:
+					return "application/x-www-form-urlencoded; charset=utf-8";
+				default:
+					return "text/plain";
 			}
 		}
 	}

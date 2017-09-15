@@ -1,6 +1,8 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
+using HSReplay.OAuth;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HSReplay.Test
@@ -92,6 +94,22 @@ namespace HSReplay.Test
 
 			var dataWild = client.GetDeckWinrates(wildDeckId, true, token).Result;
 			Assert.IsNotNull(dataWild);
+		}
+
+		[TestMethod]
+		public void OAuthTest()
+		{
+			var oauth = new OAuthClient("sYJm96GE3pgVtK9gjJ9Ghr456p3cCUUv3qPRsaXL", "HSReplay-API-Test/1.0");
+			var url = oauth.GetAuthenticationUrl(new []{Scope.ReadGames}, new[] {17784, 17785, 17786});
+			var callbackTask = oauth.ReceiveAuthenticationCallback("https://hsreplay.net", "https://hsreplay.net");
+			Process.Start(url);
+			var data = callbackTask.Result;
+			var token = oauth.GetToken(data.Code, data.RedirectUrl).Result;
+			Console.WriteLine(token);
+			var games = oauth.GetGames("Epix#2966");
+			Console.WriteLine(games.Result);
+			var foo = oauth.RefreshToken().Result;
+			Console.WriteLine(foo);
 		}
 	}
 }

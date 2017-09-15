@@ -66,6 +66,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OAuth\Data\AuthData.cs" />
+    <Compile Include="OAuth\CallbackListener.cs" />
+    <Compile Include="OAuth\Data\SocialAccount.cs" />
+    <Compile Include="OAuth\Data\TwitchUserData.cs" />
+    <Compile Include="OAuth\OAuthClient.cs" />
+    <Compile Include="OAuth\OAuthClient.DataQueries.cs" />
+    <Compile Include="OAuth\Scope.cs" />
+    <Compile Include="OAuth\Data\TokenData.cs" />
+    <Compile Include="OAuth\Data\TwitchAccount.cs" />
+    <Compile Include="Responses\ListResponse.cs" />
     <Compile Include="Responses\QueryData.cs" />
     <Compile Include="CardData.cs" />
     <Compile Include="ClientConfig.cs" />

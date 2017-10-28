@@ -48,29 +48,27 @@ namespace HSReplay.OAuth
 
 		public static CallbackListener Create(int[] ports)
 		{
+			if(ports.Length == 0)
+				throw new ArgumentException("Ports can not be empty", nameof(ports));
+			Exception exception = null;
 			foreach(var port in ports)
 			{
 				var url = $"http://127.0.0.1:{port}/";
-				var listener = TryGetListener(url);
-				if(listener != null)
+				var listener = new HttpListener();
+				listener.Prefixes.Add(url);
+				try
+				{
+					listener.Start();
 					return new CallbackListener(listener, url);
+				}
+				catch(Exception ex)
+				{
+					exception = ex;
+				}
 			}
+			if(exception != null)
+				throw exception;
 			return null;
-		}
-
-		private static HttpListener TryGetListener(string url)
-		{
-			var listener = new HttpListener();
-			listener.Prefixes.Add(url);
-			try
-			{
-				listener.Start();
-				return listener;
-			}
-			catch(Exception)
-			{
-				return null;
-			}
 		}
 	}
 }

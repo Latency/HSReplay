@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using HSReplay.OAuth.Data;
 using HSReplay.Web;
@@ -93,6 +94,13 @@ namespace HSReplay.OAuth
 			}
 		}
 
+		/// <summary>
+		/// </summary>
+		/// <param name="scopes"></param>
+		/// <param name="ports"></param>
+		/// <exception cref="ArgumentException"></exception>
+		/// <exception cref="HttpListenerException"></exception>
+		/// <returns></returns>
 		public string GetAuthenticationUrl(Scope[] scopes, int[] ports)
 		{
 			_listener = CallbackListener.Create(ports);

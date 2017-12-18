@@ -2,7 +2,7 @@ namespace HSReplay.OAuth
 {
 	public class Scope
 	{
-		private Scope(string name)
+		public Scope(string name)
 		{
 			Name = name;
 		}

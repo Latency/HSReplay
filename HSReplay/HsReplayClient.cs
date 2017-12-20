@@ -160,6 +160,21 @@ namespace HSReplay
 			return await GetQueryData(url, token);
 		}
 
+		public async Task<List<Archetype>> GetArchetypes(string token)
+		{
+			using(var response = await _webClient.GetAsync($"{_config.ArchetypesUrl}", ApiHeader, GetAuthHeader(token)))
+			using(var responseStream = response.GetResponseStream())
+			using(var reader = new StreamReader(responseStream))
+				return JsonConvert.DeserializeObject<List<Archetype>>(reader.ReadToEnd());
+		}
+
+		public async Task<QueryData> GetArchetypeMatchups(string token)
+		{
+			var query = new NameValueCollection {["GameType"] = "RANKED_STANDARD"};
+			var url = BuildUrl(_config.ArchetypeMatchupsUrl, query);
+			return await GetQueryData(url, token);
+		}
+
 		private string BuildUrl(string url, NameValueCollection parameters)
 		{
 			if(parameters == null || !parameters.HasKeys())

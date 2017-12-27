@@ -175,6 +175,17 @@ namespace HSReplay
 			return await GetQueryData(url, token);
 		}
 
+		public async Task<QueryData> GetArchetypeMulligan(string token, int archetypeId)
+		{
+			var query = new NameValueCollection
+			{
+				["GameType"] = "RANKED_STANDARD",
+				["archetype_id"] = archetypeId.ToString()
+			};
+			var url = BuildUrl(_config.ArchetypeMulliganUrl, query);
+			return await GetQueryData(url, token);
+		}
+
 		private string BuildUrl(string url, NameValueCollection parameters)
 		{
 			if(parameters == null || !parameters.HasKeys())

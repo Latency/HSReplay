@@ -10,6 +10,7 @@ namespace HSReplay
 		private const string DefaultUploadPackUrl = "https://hsreplay.net/api/v1/packs/";
 		private const string DefaultArchetypesUrl = "https://hsreplay.net/api/v1/archetypes/";
 		private const string DefaultArchetypeMatchupsUrl = "https://hsreplay.net/analytics/query/head_to_head_archetype_matchups/";
+		private const string DefaultArchetypeMulliganUrl = "https://hsreplay.net/analytics/query/single_archetype_mulligan_guide/";
 		public string ClaimAccountUrl { get; set; } = DefaultClaimAccountUrl;
 		public string DeckInventoryUrl { get; set; } = DefaultDeckInventoryUrl;
 		public string DeckWinrateUrl { get; set; } = DefaultDeckWinrateUrl;
@@ -18,5 +19,6 @@ namespace HSReplay
 		public string UploadPackUrl { get; set; } = DefaultUploadPackUrl;
 		public string ArchetypesUrl { get; set; } = DefaultArchetypesUrl;
 		public string ArchetypeMatchupsUrl { get; set; } = DefaultArchetypeMatchupsUrl;
+		public string ArchetypeMulliganUrl { get; set; } = DefaultArchetypeMulliganUrl;
 	}
 }

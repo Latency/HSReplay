@@ -186,6 +186,15 @@ namespace HSReplay
 			return await GetQueryData(url, token);
 		}
 
+		public async Task<DeckData> GetDeck(string token, int format, int hero, IEnumerable<int> cards)
+		{
+			var data = JsonConvert.SerializeObject(new { format, heroes = new[] {hero}, cards });
+			using(var response = await _webClient.PostJsonAsync(_config.DecksUrl, data, false, ApiHeader, GetAuthHeader(token)))
+			using(var responseStream = response.GetResponseStream())
+			using(var reader = new StreamReader(responseStream))
+				return JsonConvert.DeserializeObject<DeckData>(reader.ReadToEnd());
+		}
+
 		private string BuildUrl(string url, NameValueCollection parameters)
 		{
 			if(parameters == null || !parameters.HasKeys())

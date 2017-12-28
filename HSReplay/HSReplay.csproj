@@ -76,6 +76,7 @@
     <Compile Include="OAuth\Data\TokenData.cs" />
     <Compile Include="OAuth\Data\TwitchAccount.cs" />
     <Compile Include="Responses\Archetype.cs" />
+    <Compile Include="Responses\DeckData.cs" />
     <Compile Include="Responses\ListResponse.cs" />
     <Compile Include="Responses\QueryData.cs" />
     <Compile Include="CardData.cs" />

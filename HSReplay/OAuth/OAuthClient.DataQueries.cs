@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace HSReplay.OAuth
 		// ReSharper disable once InconsistentNaming
 		private const string HSReplayNetAccountUrl = "https://hsreplay.net/api/v1/account/";
 		private const string TwitchDataUrl = "https://twitch-ebs.hearthsim.net/send/";
+		private const string GlobalAnalyticsUrl = "https://hsreplay.net/api/v1/analytics/global/";
 
 
 		public async Task<string> GetGames(string username)
@@ -59,6 +62,39 @@ namespace HSReplay.OAuth
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 				return reader.ReadToEnd();
+		}
+
+		public async Task<QueryData> GetArchetypeMatchups(string rankRange)
+		{
+			var query = new NameValueCollection
+			{
+				["query"] = "head_to_head_archetype_matchups",
+				["GameType"] = "RANKED_STANDARD",
+				["RankRange"] = rankRange
+			};
+			var url = Helper.BuildUrl(GlobalAnalyticsUrl, query);
+			return await GetQueryData(url);
+		}
+
+		public async Task<QueryData> GetArchetypeMulligan(int archetypeId, string rankRange)
+		{
+			var query = new NameValueCollection
+			{
+				["query"] = "single_archetype_mulligan_guide",
+				["GameType"] = "RANKED_STANDARD",
+				["archetype_id"] = archetypeId.ToString(),
+				["RankRange"] = rankRange
+			};
+			var url = Helper.BuildUrl(GlobalAnalyticsUrl, query);
+			return await GetQueryData(url);
+		}
+
+		private async Task<QueryData> GetQueryData(string url)
+		{
+			using(var response = await _webClient.GetAsync(url, AuthHeader))
+			using(var responseStream = response.GetResponseStream())
+			using(var reader = new StreamReader(responseStream))
+				return JsonConvert.DeserializeObject<QueryData>(reader.ReadToEnd());
 		}
 	}
 }

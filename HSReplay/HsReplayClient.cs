@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Threading.Tasks;
-using System.Web;
 using HSReplay.Responses;
 using HSReplay.Web;
 using Newtonsoft.Json;
@@ -156,7 +155,7 @@ namespace HSReplay
 			var query = new NameValueCollection {["deck_id"] = deckId};
 			if(wild)
 				query["GameType"] = "RANKED_WILD";
-			var url = BuildUrl(_config.DeckWinrateUrl, query);
+			var url = Helper.BuildUrl(_config.DeckWinrateUrl, query);
 			return await GetQueryData(url, token);
 		}
 
@@ -171,7 +170,7 @@ namespace HSReplay
 		public async Task<QueryData> GetArchetypeMatchups(string token)
 		{
 			var query = new NameValueCollection {["GameType"] = "RANKED_STANDARD"};
-			var url = BuildUrl(_config.ArchetypeMatchupsUrl, query);
+			var url = Helper.BuildUrl(_config.ArchetypeMatchupsUrl, query);
 			return await GetQueryData(url, token);
 		}
 
@@ -182,7 +181,7 @@ namespace HSReplay
 				["GameType"] = "RANKED_STANDARD",
 				["archetype_id"] = archetypeId.ToString()
 			};
-			var url = BuildUrl(_config.ArchetypeMulliganUrl, query);
+			var url = Helper.BuildUrl(_config.ArchetypeMulliganUrl, query);
 			return await GetQueryData(url, token);
 		}
 
@@ -193,17 +192,6 @@ namespace HSReplay
 			using(var responseStream = response.GetResponseStream())
 			using(var reader = new StreamReader(responseStream))
 				return JsonConvert.DeserializeObject<DeckData>(reader.ReadToEnd());
-		}
-
-		private string BuildUrl(string url, NameValueCollection parameters)
-		{
-			if(parameters == null || !parameters.HasKeys())
-				return url;
-			var uriBuilder = new UriBuilder(url);
-			var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-			query.Add(parameters);
-			uriBuilder.Query = query.ToString();
-			return uriBuilder.Uri.ToString();
 		}
 
 		private async Task<QueryData> GetQueryData(string url, string token)

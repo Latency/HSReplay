@@ -5,7 +5,7 @@ namespace HSReplay.Responses
 	public class DeckData
 	{
 		[JsonProperty("archetype_id")]
-		public int Archetype { get; set; }
+		public int? Archetype { get; set; }
 		
 		[JsonProperty("shortid")]
 		public string ShortId { get; set; }

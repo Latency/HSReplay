@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using HSReplay.OAuth.Data;
@@ -91,10 +91,22 @@ namespace HSReplay.OAuth
 
 		private async Task<QueryData> GetQueryData(string url)
 		{
-			using(var response = await _webClient.GetAsync(url, AuthHeader))
-			using(var responseStream = response.GetResponseStream())
-			using(var reader = new StreamReader(responseStream))
-				return JsonConvert.DeserializeObject<QueryData>(reader.ReadToEnd());
+			HttpWebResponse response = null;
+			try
+			{
+				while((response = await _webClient.GetAsync(url, AuthHeader)).StatusCode == HttpStatusCode.Accepted)
+				{
+					response.Dispose();
+					await Task.Delay(5000);
+				}
+				using(var responseStream = response.GetResponseStream())
+				using(var reader = new StreamReader(responseStream))
+					return JsonConvert.DeserializeObject<QueryData>(reader.ReadToEnd());
+			}
+			finally
+			{
+				response?.Dispose();
+			}
 		}
 	}
 }

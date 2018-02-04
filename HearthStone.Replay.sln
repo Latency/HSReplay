@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HearthStone.Replay", "HearthStone.Replay\HearthStone.Replay.csproj", "{A6264074-8A96-417C-9673-5EE7E9820B1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12B5D124-A859-49B2-8B33-ED2168059CE8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		Nuget.config = Nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AnyCPU = Debug|AnyCPU
+		Release|AnyCPU = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6264074-8A96-417C-9673-5EE7E9820B1F}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{A6264074-8A96-417C-9673-5EE7E9820B1F}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{A6264074-8A96-417C-9673-5EE7E9820B1F}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{A6264074-8A96-417C-9673-5EE7E9820B1F}.Release|AnyCPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F2638F9-F4E3-491E-AC2A-199A2B3332BB}
+	EndGlobalSection
+EndGlobal

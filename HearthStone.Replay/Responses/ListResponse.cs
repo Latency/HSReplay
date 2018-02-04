@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace HSReplay.Responses
+
+namespace HearthStone.Replay.Responses
 {
 	public class ListResponse<T>
 	{

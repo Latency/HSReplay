@@ -1,4 +1,4 @@
-namespace HSReplay
+namespace HearthStone.Replay
 {
 	public class ClientConfig
 	{

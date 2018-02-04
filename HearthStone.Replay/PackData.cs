@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 
-namespace HSReplay
+
+namespace HearthStone.Replay
 {
 	public class PackData
 	{

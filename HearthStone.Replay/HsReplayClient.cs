@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Threading.Tasks;
-using HSReplay.Responses;
-using HSReplay.Web;
+using HearthStone.Replay.Responses;
+using HearthStone.Replay.Web;
 using Newtonsoft.Json;
 
-namespace HSReplay
+
+namespace HearthStone.Replay
 {
 	/// <summary>
 	///     API client for hsreplay.net

@@ -4,11 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using HSReplay.OAuth.Data;
-using HSReplay.Web;
+using HearthStone.Replay.OAuth.Data;
+using HearthStone.Replay.Web;
 using Newtonsoft.Json;
 
-namespace HSReplay.OAuth
+
+namespace HearthStone.Replay.OAuth
 {
 	public partial class OAuthClient
 	{

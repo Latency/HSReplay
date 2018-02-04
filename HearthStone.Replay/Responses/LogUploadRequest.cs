@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 
-namespace HSReplay.Responses
+
+namespace HearthStone.Replay.Responses
 {
 	/// <summary>
 	/// Response from POST to https://upload.hsreplay.net/api/v1/replay/upload/request

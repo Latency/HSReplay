@@ -2,7 +2,8 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace HSReplay.Responses
+
+namespace HearthStone.Replay.Responses
 {
 	public class QueryData
 	{

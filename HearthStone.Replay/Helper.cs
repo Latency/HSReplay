@@ -2,7 +2,8 @@
 using System.Collections.Specialized;
 using System.Web;
 
-namespace HSReplay
+
+namespace HearthStone.Replay
 {
 	internal static class Helper
 	{

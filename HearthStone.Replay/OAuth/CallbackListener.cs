@@ -2,7 +2,8 @@
 using System.Net;
 using System.Threading.Tasks;
 
-namespace HSReplay.OAuth
+
+namespace HearthStone.Replay.OAuth
 {
 	internal class CallbackListener : IDisposable
 	{

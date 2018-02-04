@@ -1,6 +1,7 @@
 using System.Linq;
 
-namespace HSReplay.LogValidation
+
+namespace HearthStone.Replay.LogValidation
 {
 	public static class LogValidator
 	{

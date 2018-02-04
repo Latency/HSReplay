@@ -1,4 +1,4 @@
-﻿namespace HSReplay.Web
+﻿namespace HearthStone.Replay.Web
 {
 	internal class Header
 	{

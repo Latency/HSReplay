@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 
-namespace HSReplay.OAuth.Data
+
+namespace HearthStone.Replay.OAuth.Data
 {
 	public class TokenData
 	{

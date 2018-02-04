@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 
-namespace HSReplay.Responses
+
+namespace HearthStone.Replay.Responses
 {
 	public class DeckData
 	{

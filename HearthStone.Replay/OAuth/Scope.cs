@@ -1,4 +1,4 @@
-namespace HSReplay.OAuth
+namespace HearthStone.Replay.OAuth
 {
 	public class Scope
 	{

@@ -2,9 +2,10 @@
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using HSReplay.Web;
+using HearthStone.Replay.Web;
 
-namespace HSReplay
+
+namespace HearthStone.Replay
 {
 	internal class WebClient
 	{

@@ -5,7 +5,7 @@
     <TargetFrameworks>net471;netcoreapp2.0</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>snKey.snk</AssemblyOriginatorKeyFile>
-    <RootNamespace>HSReplay</RootNamespace>
+    <RootNamespace>HearthStone.Replay</RootNamespace>
 	  <AssemblyName>HearthStone.Replay</AssemblyName>
 	  <Version>1.0.1</Version>
 	  <Description>HearthStone Deck Tracker Replay</Description>
@@ -19,6 +19,7 @@
 	  <Company>HearthSim</Company>
 	  <Authors>HearthSim</Authors>
 	  <PackageIconUrl>https://raw.githubusercontent.com/HearthSim/Hearthstone-Deck-Tracker/master/Hearthstone%20Deck%20Tracker/Images/HearthstoneDeckTracker.ico</PackageIconUrl>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
   <ItemGroup>

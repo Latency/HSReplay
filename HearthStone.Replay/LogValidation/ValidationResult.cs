@@ -1,4 +1,4 @@
-namespace HSReplay.LogValidation
+namespace HearthStone.Replay.LogValidation
 {
 	public class ValidationResult
 	{
